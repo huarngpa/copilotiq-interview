@@ -12,7 +12,7 @@ import java.util.function.Function;
 public class Heap<T extends Comparable<T>> implements TreeLike<T> {
 
   private int size = 0;
-  private List<T> store = new ArrayList<>();
+  private final List<T> store = new ArrayList<>();
 
   public Heap() {}
 
