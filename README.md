@@ -71,3 +71,33 @@ public class Heap<T extends Comparable<T>> implements TreeLike<T> {
 ## Question 4
 
 Extend the data structure so you can navigate bi-directionally on each level of the tree.
+
+We accomplish this using inheritance on the existing solution. But we create an extension point by which we can add this
+behavior:
+
+```java
+public class Heap<T extends Comparable<T>> implements TreeLike<T> {
+    @Override
+    public void insert(T val) {
+        int idx = size++;
+        store.add(val);
+        bubbleUp(idx);
+        postInsert(val); // this
+    }
+
+    // to be overridden
+    protected void postInsert(T val) {
+    }
+}
+```
+
+Further, we modify the node (data class) to contain a pointer to the adjacent node traversal across the same level on
+the tree. See `LevelNode`:
+
+```java
+public class LevelNode<T extends Comparable<T>> implements Comparable<LevelNode<T>> {
+    T val;
+    LevelNode<T> sameLevelLeft;
+    LevelNode<T> sameLevelRight;
+}
+```
