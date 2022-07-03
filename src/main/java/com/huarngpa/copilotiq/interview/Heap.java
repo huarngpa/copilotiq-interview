@@ -11,10 +11,15 @@ import java.util.function.Function;
  */
 public class Heap<T extends Comparable<T>> implements TreeLike<T> {
 
-  private int size = 0;
-  private final List<T> store = new ArrayList<>();
+  protected int size = 0;
+  protected final List<T> store = new ArrayList<>();
 
   public Heap() {}
+
+  /** Gets the internal storage of the heap. */
+  public List<T> getStore() {
+    return store;
+  }
 
   /**
    * Finds the parent of the provided index.
@@ -77,12 +82,25 @@ public class Heap<T extends Comparable<T>> implements TreeLike<T> {
     }
   }
 
+  /**
+   * Insert a value into the heap.
+   *
+   * @param val
+   */
   @Override
   public void insert(T val) {
     int idx = size++;
     store.add(val);
     bubbleUp(idx);
+    postInsert(val);
   }
+
+  /**
+   * Post-insertion hook for overriding insertion behavior.
+   *
+   * @param val
+   */
+  protected void postInsert(T val) {}
 
   @Override
   public String toString() {
