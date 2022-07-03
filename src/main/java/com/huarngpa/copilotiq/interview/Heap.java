@@ -27,7 +27,7 @@ public class Heap<T extends Comparable<T>> implements TreeLike<T> {
    * @param index
    * @return
    */
-  private int parent(int index) {
+  protected int parent(int index) {
     return index / 2;
   }
 
@@ -37,7 +37,7 @@ public class Heap<T extends Comparable<T>> implements TreeLike<T> {
    * @param index
    * @return
    */
-  private int left(int index) {
+  protected int left(int index) {
     return index * 2;
   }
 
@@ -47,7 +47,7 @@ public class Heap<T extends Comparable<T>> implements TreeLike<T> {
    * @param index
    * @return
    */
-  private int right(int index) {
+  protected int right(int index) {
     return index * 2 + 1;
   }
 
@@ -57,7 +57,7 @@ public class Heap<T extends Comparable<T>> implements TreeLike<T> {
    * @param i
    * @param j
    */
-  private void swap(int i, int j) {
+  protected void swap(int i, int j) {
     T temp = store.get(i);
     store.set(i, store.get(j));
     store.set(j, temp);
@@ -68,7 +68,7 @@ public class Heap<T extends Comparable<T>> implements TreeLike<T> {
    *
    * @param index
    */
-  private void bubbleUp(int index) {
+  protected void bubbleUp(int index) {
     int i = index;
     Function<Integer, Boolean> canBubbleUp =
         (idx) -> {
